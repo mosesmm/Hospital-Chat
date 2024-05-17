@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Symptom Checker</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+  <div class="logo">
+    <img src="medic-cross.png" alt="Symptom Checker Logo">
+  </div>
+  <div class="chat-content">
+    <div id="chat-container"></div>
+    <div class="input-group">
+      <label for="symptom-input">Enter your symptom:</label>
+      <input type="text" id="symptom-input" placeholder="e.g., headache, fever, cough...">
+    </div>
+    <div class="input-group">
+      <label for="name-input">Name:</label>
+      <input type="text" id="name-input" placeholder="Enter your Full Name...">
+    </div>
+    <div class="input-group">
+      <label for="city-input">City:</label>
+      <input type="text" id="city-input" placeholder="Enter your city...">
+    </div>
+    <div class="input-group">
+      <label for="phone-input">Phone Number:</label>
+      <input type="tel" id="phone-input" placeholder="Enter your phone number...">
+    </div>
+    <div class="input-group">
+      <label for="age-input">Age:</label>
+      <input type="number" id="age-input" placeholder="Enter your age...">
+    </div>
+    <div>
+      <button id="submit-btn" onclick="checkSymptom()">Submit</button>
+      <button id="clear-user-btn" onclick="clearUserInput()">Clear User Input</button>
+      <button id="clear-all-btn" onclick="clearAll()">Clear All</button>
+      <button id="emergency-btn" onclick="openEmergencyNumbers()">Emergency Numbers</button>
+    </div>
+  </div>
+</div>
+
+<div class="popup" id="noticePopup">
+  <div class="popup-content">
+    <h2>Notice</h2>
+    <p>The information provided on this website is not sourced from a licensed medical professional. It has been compiled from online resources for informational purposes only. We strongly advise consulting a qualified healthcare provider for accurate diagnosis, treatment, and medical advice tailored to your specific needs. Reliance on any information provided herein is solely at your own risk.</p>
+    <button onclick="closeNotice()">Close</button>
+  </div>
+</div>
+
+<div class="popup" id="emergencyPopup">
+  <div class="popup-content">
+    <h2>Emergency Numbers for South Africa</h2>
+    <p>Police: 10111</p>
+    <p>Ambulance: 10177</p>
+    <p>Fire Department: 10177</p>
+    <button onclick="closeEmergencyNumbers()">Close</button>
+  </div>
+</div>
+
+<script src="script.js"></script>
+<script>
+window.onload = function() {
+  var noticePopup = document.getElementById("noticePopup");
+  noticePopup.style.display = "block";
+}
+
+function closeNotice() {
+  var noticePopup = document.getElementById("noticePopup");
+  noticePopup.style.display = "none";
+}
+
+function openEmergencyNumbers() {
+  var emergencyPopup = document.getElementById("emergencyPopup");
+  emergencyPopup.style.display = "block";
+}
+
+function clearUserInput() {
+  document.getElementById("symptom-input").value = "";
+  document.getElementById("name-input").value = "";
+  document.getElementById("city-input").value = "";
+  document.getElementById("phone-input").value = "";
+  document.getElementById("age-input").value = "";
+}
+
+function clearAll() {
+  document.getElementById("chat-container").innerHTML = "";
+  clearUserInput();
+}
+</script>
+
+</body>
+</html>
