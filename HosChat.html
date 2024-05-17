@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Symptom Checker</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #ccc; /* Change to grey */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .container {
+    width: 400px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  #chat-container {
+    height: 200px;
+    border: 1px solid #ccc;
+    overflow-y: scroll;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+  }
+
+  .input-group {
+    margin-bottom: 10px;
+  }
+
+  .input-group label {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  .input-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 14px;
+  }
+
+  #submit-btn, #clear-btn, #exit-btn {
+    width: calc(33.33% - 5px);
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+
+  #submit-btn {
+    background-color: #007bff;
+    color: #fff;
+  }
+
+  #submit-btn:hover {
+    background-color: #0056b3;
+  }
+
+  #clear-btn {
+    background-color: #dc3545;
+    color: #fff;
+  }
+
+  #clear-btn:hover {
+    background-color: #bd2130;
+  }
+
+  #exit-btn {
+    background-color: #6c757d;
+    color: #fff;
+  }
+
+  #exit-btn:hover {
+    background-color: #5a6268;
+  }
+
+  .logo {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .logo img {
+    width: 150px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="logo">
+    <img src="symptom_checker_logo.png" alt="Symptom Checker">
+  </div>
+  <div id="chat-container"></div>
+  <div class="input-group">
+    <label for="symptom-input">Enter your symptom:</label>
+    <input type="text" id="symptom-input" placeholder="e.g., headache, fever...">
+  </div>
+  <div class="input-group">
+    <label for="name-input">Name:</label>
+    <input type="text" id="name-input" placeholder="Enter your name...">
+  </div>
+  <div class="input-group">
+    <label for="city-input">City:</label>
+    <input type="text" id="city-input" placeholder="Enter your city...">
+  </div>
+  <div class="input-group">
+    <label for="phone-input">Phone Number:</label>
+    <input type="tel" id="phone-input" placeholder="Enter your phone number...">
+  </div>
+  <div class="input-group">
+    <label for="age-input">Age:</label>
+    <input type="number" id="age-input" placeholder="Enter your age...">
+  </div>
+  <div>
+    <button id="submit-btn" onclick="checkSymptom()">Submit</button>
+    <button id="clear-btn" onclick="clearChat()">Clear</button>
+    <button id="exit-btn" onclick="exitChat()">Exit</button>
+  </div>
+</div>
+
+<script>
+// Mapping of symptoms to treatments and possible causes
+const symptomMap = {
+  "headache": {
+    treatment: "Take pain relievers such as ibuprofen or acetaminophen.",
+    causes: "Possible causes include stress, dehydration, or eye strain.",
+  },
+  "fever": {
+    treatment: "Rest, drink plenty of fluids, and take over-the-counter fever reducers like acetaminophen or ibuprofen.",
+    causes: "Fevers can be caused by infections, such as the flu or a cold, as well as other medical conditions.",
+  },
+  // Add more symptoms and their corresponding treatments and causes here
+};
+
+// Function to check a symptom
+function checkSymptom() {
+  const symptomInput = document.getElementById("symptom-input").value.toLowerCase();
+  const chatContainer = document.getElementById("chat-container");
+
+  // Display user input
+  const userMessage = document.createElement("div");
+  userMessage.innerHTML = `<strong>You:</strong> ${symptomInput}`;
+  chatContainer.appendChild(userMessage);
+
+  // Check if there's information for the symptom
+  const symptomInfo = symptomMap[symptomInput];
+  if (symptomInfo) {
+    // Display treatment and possible causes
+    const botMessage = document.createElement("div");
+    botMessage.innerHTML = `<strong>Bot:</strong> Treatment: ${symptomInfo.treatment}<br><strong>Possible Causes:</strong> ${symptomInfo.causes}`;
+    chatContainer.appendChild(botMessage);
+  } else {
+    // If no information found, display default message
+    const defaultMessage = document.createElement("div");
+    defaultMessage.innerHTML = "<strong>Bot:</strong> I'm sorry, I don't have information about that symptom.";
+    chatContainer.appendChild(defaultMessage);
+  }
+
+  // Clear symptom input field
+  document.getElementById("symptom-input").value = "";
+
+  // Scroll to the bottom of the chat container
+  chatContainer.scrollTop = chatContainer.scrollHeight;
+}
+
+// Function to clear the chat history and input fields
+function clearChat() {
+  const chatContainer = document.getElementById("chat-container");
+  chatContainer.innerHTML = "";
+
+  // Clear all input fields
+  document.getElementById("symptom-input").value = "";
+  document.getElementById("name-input").value = "";
+  document.getElementById("city-input").value = "";
+  document.getElementById("phone-input").value = "";
+  document.getElementById("age-input").value = "";
+}
+
+// Function to exit the chat
+function exitChat() {
+  if (confirm("Are you sure you want to exit the chat?")) {
+    window.close();
+  }
+}
+</script>
+</body>
+</html>
