@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Symptom Checker</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+  <div class="logo">
+    <img src="symptom_checker_logo.png" alt="Symptom Checker">
+  </div>
+  <div id="chat-container"></div>
+  <div class="input-group">
+    <label for="symptom-input">Enter your symptom:</label>
+    <input type="text" id="symptom-input" placeholder="e.g., headache, fever...">
+  </div>
+  <div class="input-group">
+    <label for="name-input">Name:</label>
+    <input type="text" id="name-input" placeholder="Enter your name...">
+  </div>
+  <div class="input-group">
+    <label for="city-input">City:</label>
+    <input type="text" id="city-input" placeholder="Enter your city...">
+  </div>
+  <div class="input-group">
+    <label for="phone-input">Phone Number:</label>
+    <input type="tel" id="phone-input" placeholder="Enter your phone number...">
+  </div>
+  <div class="input-group">
+    <label for="age-input">Age:</label>
+    <input type="number" id="age-input" placeholder="Enter your age...">
+  </div>
+  <div>
+    <button id="submit-btn" onclick="checkSymptom()">Submit</button>
+    <button id="clear-btn" onclick="clearChat()">Clear</button>
+    <button id="exit-btn" onclick="exitChat()">Exit</button>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
